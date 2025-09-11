@@ -1,400 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Futuristic Newsletter Maker — 100+ Templates (HTML Only)</title>
-  <meta name="description" content="Build and export responsive HTML email newsletters. 100+ templates generated from layouts × colorways. No frameworks. Single file."/>
+  <title>Newsletter Builder — Test Link (with Export)</title>
   <style>
-    /* ===== App Frame (website maker) ===== */
-    :root{
-      --bg: #0a0b13;
-      --panel: #101223;
-      --ink: #e6e8ef;
-      --muted: #96a0b8;
-      --brandA: #7c3aed;
-      --brandB: #06b6d4;
-      --line: #1b2138;
-      --radius: 16px;
-    }
-    html,body{height:100%;}
-    body{margin:0;background:radial-gradient(1200px 800px at 10% 10%, #1b255766, transparent),radial-gradient(1000px 900px at 90% 20%, #00d6ff40, transparent),linear-gradient(160deg, var(--bg), #0b0f20 70%);color:var(--ink);font:14px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial;}
-    .app{display:grid;grid-template-columns:320px 1fr;gap:16px;min-height:100vh;padding:18px;}
-    .panel{background:linear-gradient(180deg,#0f1326,#0b0f22);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 12px 40px #00000055, inset 0 1px 0 #ffffff10;}
-    .left{padding:16px;display:grid;grid-template-rows:auto auto 1fr auto;gap:14px;}
-    .h1{font-weight:800;letter-spacing:-.02em;font-size:18px;margin:0;display:flex;align-items:center;gap:8px}
-    .kicker{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
-    .field{display:grid;gap:6px;margin-bottom:10px}
-    .label{font-size:12px;color:var(--muted)}
-    .input,.select,textarea{width:100%;padding:10px 12px;background:#0d1329;color:var(--ink);border:1px solid #1e2a48;border-radius:10px;outline:none}
-    textarea{min-height:88px;resize:vertical}
-    .row{display:flex;gap:8px}
-    .btn{appearance:none;border:0;border-radius:12px;padding:12px 14px;font-weight:800;letter-spacing:.02em;cursor:pointer;color:white;background:linear-gradient(135deg,var(--brandA),var(--brandB));box-shadow:0 8px 20px #00000044, inset 0 -2px 0 #00000029;}
-    .btn:active{transform:translateY(1px)}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #273055;border-radius:999px;font-size:12px;color:#cdd5e8;background:#0c1227}
-    .grid{padding:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
-    .card{background:#0c1124;border:1px solid #202a49;border-radius:14px;overflow:hidden;cursor:pointer;outline:none}
-    .thumb{aspect-ratio:4/3;background:linear-gradient(135deg,#111834,#0d1430);display:grid;place-items:center}
-    .thumb span{font-size:11px;color:#b4bcd4}
-    .card .meta{padding:10px;border-top:1px solid #1a2342;display:flex;justify-content:space-between;color:#9fb0d6;font-size:12px}
-    .card[aria-selected="true"]{box-shadow:0 0 0 2px #7c3aed}
-
-    .right{display:grid;grid-template-rows:auto 1fr auto;gap:12px;padding:12px}
-    .preview-wrap{display:grid;grid-template-columns:1fr 430px;gap:12px;min-height:0}
-    .phone{background:linear-gradient(180deg,#0d1226,#0a0f20);border:1px solid #1b2544;border-radius:16px;padding:10px;display:grid;place-items:center;min-height:520px}
-    .iframe{width:100%;height:100%;min-height:520px;background:white;border-radius:12px;border:0}
-    .editor{background:#0c1124;border:1px solid #19264a;border-radius:16px;padding:12px;display:grid;grid-template-rows:auto 1fr}
-    .editor .fields{overflow:auto;max-height:560px;padding-right:4px}
-    .footerbar{display:flex;justify-content:space-between;align-items:center;padding:12px;background:#0c1124;border:1px solid #19264a;border-radius:16px}
-
-    .badge{background:#111a36;border:1px solid #2a3b6f;padding:6px 8px;border-radius:999px;color:#b8c4e6;font-size:12px}
-
-    /* Decorative header */
-    .branding{display:flex;align-items:center;gap:10px}
-    .logo{width:26px;height:26px;border-radius:8px;background:conic-gradient(from 200deg at 70% 30%, #7c3aed, #06b6d4, #10b981, #7c3aed);box-shadow:0 0 0 1px #273055}
-
-    /* Scrollbars */
-    *::-webkit-scrollbar{height:10px;width:10px}
-    *::-webkit-scrollbar-thumb{background:#1c2643;border-radius:8px}
-
-    /* ===== Email preview shell ===== */
-    .device{background:#f4f7ff;border-radius:12px;overflow:auto;border:1px solid #dfe5f6}
-    .device-inner{padding:16px}
-    .email-shadow{box-shadow:0 6px 28px rgba(0,0,0,.18)}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, Roboto, Arial, sans-serif;background:#0b1020;color:#e6eef8}
+    .wrap{display:flex;gap:18px;align-items:stretch;min-height:100vh;padding:18px}
+    .sidebar{width:320px;background:#0f1726;border-radius:12px;padding:18px;border:1px solid #182033}
+    .sidebar h2{margin:0 0 8px 0;font-size:18px}
+    label{display:block;font-size:13px;color:#9fb0d6;margin-top:12px}
+    input[type=text], select, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #18233a;background:#071025;color:#e6eef8}
+    textarea{min-height:80px;resize:vertical}
+    .actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+    button{cursor:pointer;border:0;padding:10px 12px;border-radius:8px;font-weight:700}
+    .btn-test{background:linear-gradient(135deg,#06b6d4,#7c3aed);color:#061022}
+    .btn-export{background:linear-gradient(135deg,#facc15,#f97316);color:#061022}
+    .panel{flex:1;display:flex;flex-direction:column}
+    .preview{background:#ffffff;color:#0b1222;border-radius:12px;padding:18px;overflow:auto;border:1px solid #dfe6f6}
+    .email-shell{max-width:680px;margin:0 auto;background:#ffffff;border-radius:10px;overflow:hidden}
+    .email-top{padding:28px 22px;text-align:center;color:#fff}
+    .email-title{margin:0;font-size:22px;color:#071022}
+    .email-sub{margin:8px 0 0;color:#475569}
+    .email-cta{padding:22px 20px;text-align:center}
+    .cta-btn{display:inline-block;padding:12px 22px;border-radius:8px;color:#fff;text-decoration:none;font-weight:800}
+    .cta-paragraph{margin-top:12px;max-width:640px;margin-left:auto;margin-right:auto;color:#475569;line-height:1.6;white-space:normal;word-wrap:break-word}
+    .email-footer{padding:18px 20px;text-align:center;color:#94a3b8;font-size:13px}
+    @media (max-width:900px){.wrap{flex-direction:column;padding:12px}.sidebar{width:100%}.email-shell{width:100%}}
   </style>
 </head>
 <body>
-  <div class="app">
-    <aside class="panel left">
-      <div class="branding">
-        <div class="logo"></div>
-        <h1 class="h1">Newsletter Maker <span class="badge">HTML‑Only</span></h1>
-      </div>
-      <div class="kicker">Choose a template</div>
-      <div class="row" style="gap:6px;flex-wrap:wrap">
-        <span class="pill">Layouts: <strong id="countLayouts">—</strong></span>
-        <span class="pill">Colorways: <strong id="countColors">—</strong></span>
-        <span class="pill">Total: <strong id="countTotal">—</strong></span>
-      </div>
-
-      <div class="field">
-        <label class="label" for="filterLayout">Layout</label>
-        <select id="filterLayout" class="select">
-          <option value="all">All</option>
+  <div class="wrap">
+    <aside class="sidebar" aria-label="Builder controls">
+      <h2>Newsletter Builder</h2>
+      <label>Headline
+        <input id="headline" type="text" placeholder="Big news this week" value="Big news this week" />
+      </label>
+      <label>Subheadline
+        <input id="subhead" type="text" placeholder="Short subheading" value="Short subheading" />
+      </label>
+      <label>CTA Text
+        <input id="ctaText" type="text" placeholder="Read the article" value="Read the article" />
+      </label>
+      <label>CTA URL
+        <input id="ctaUrl" type="text" placeholder="https://example.com/article" value="https://example.com/article" />
+      </label>
+      <label>Paragraph under CTA
+        <textarea id="ctaParagraph">This is a short paragraph that appears under the CTA button. It wraps correctly and will not overflow the preview area.</textarea>
+      </label>
+      <label>Color theme
+        <select id="theme">
+          <option value="aurora">Aurora</option>
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+          <option value="sunset">Sunset</option>
+          <option value="steel">Steel</option>
         </select>
+      </label>
+      <label>Unsubscribe link
+        <input id="unsubscribe" type="text" value="https://example.com/unsubscribe" />
+      </label>
+      <div class="actions">
+        <button class="btn-test" id="getLink">Get Test Link</button>
+        <button class="btn-export" id="exportBtn">Export HTML</button>
       </div>
-      <div class="field">
-        <label class="label" for="filterColor">Colorway</label>
-        <select id="filterColor" class="select">
-          <option value="all">All</option>
-        </select>
-      </div>
-
-      <div class="grid" id="templateGrid" aria-label="Templates grid"></div>
     </aside>
-
-    <main class="panel right">
-      <div class="preview-wrap">
-        <section class="phone">
-          <div class="device email-shadow" style="width:100%;max-width:680px;background:white;border-radius:10px">
-            <iframe id="preview" class="iframe" title="Email preview"></iframe>
-          </div>
-        </section>
-        <section class="editor">
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <h2 class="h1" style="font-size:16px;margin:0">Content</h2>
-            <span class="badge" id="currentTpl">—</span>
-          </div>
-          <div class="fields">
-            <div class="field"><label class="label">Logo Text</label><input id="logoText" class="input" value="Your Brand"/></div>
-            <div class="field"><label class="label">Headline</label><input id="headline" class="input" value="Weekly Update: Big Wins & Fresh Drops"/></div>
-            <div class="field"><label class="label">Subheadline</label><input id="subhead" class="input" value="Hand‑picked highlights delivered in minutes"/></div>
-            <div class="field"><label class="label">Hero Image URL (optional)</label><input id="hero" class="input" placeholder="https://..."/></div>
-            <div class="field"><label class="label">Body (Markdown-ish, use blank line for new paragraph)</label><textarea id="body">• New feature: instant exports
-• 27% faster load time this week
-
-Pro tip: You can swap colorways without breaking your layout.</textarea></div>
-            <div class="row">
-              <div class="field" style="flex:1"><label class="label">CTA Text</label><input id="ctaText" class="input" value="Read the full story"/></div>
-              <div class="field" style="flex:1"><label class="label">CTA URL</label><input id="ctaUrl" class="input" value="https://example.com"/></div>
-            </div>
-            <div class="field"><label class="label">Footer Note</label><input id="footer" class="input" value="You’re receiving this because you subscribed at example.com"/></div>
-            <div class="row">
-              <button id="refresh" class="btn" type="button">Refresh Preview</button>
-              <button id="export" class="btn" type="button" title="Export a standalone HTML email">Export HTML</button>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <div class="footerbar">
-        <div class="kicker">Built‑in library: <strong id="libCount">—</strong> templates</div>
-        <div class="row">
-          <span class="pill">Export: Inline CSS (table layout)</span>
-          <span class="pill">No frameworks • Single file</span>
-        </div>
-      </div>
-    </main>
+    <section class="panel">
+      <div class="preview" id="previewArea"></div>
+    </section>
   </div>
-
   <script>
-    // ===== Data: layouts × colorways => 100+ templates =====
-    const LAYOUTS = [
-      { id: 'hero', name: 'Hero Focus' },
-      { id: 'digest', name: 'Weekly Digest' },
-      { id: 'announce', name: 'Announcement' },
-      { id: 'spotlight', name: 'Product Spotlight' },
-      { id: 'magazine', name: 'Magazine' },
-      { id: 'minimal', name: 'Minimal' },
-      { id: 'columns', name: 'Two Columns' },
-      { id: 'event', name: 'Event Invite' },
-      { id: 'promo', name: 'Promo Banner' },
-      { id: 'report', name: 'Monthly Report' },
-    ];
+    const headlineInput=document.getElementById('headline');
+    const subheadInput=document.getElementById('subhead');
+    const ctaTextInput=document.getElementById('ctaText');
+    const ctaUrlInput=document.getElementById('ctaUrl');
+    const ctaParagraphInput=document.getElementById('ctaParagraph');
+    const themeSelect=document.getElementById('theme');
+    const unsubscribeInput=document.getElementById('unsubscribe');
+    const previewArea=document.getElementById('previewArea');
 
-    const COLORWAYS = [
-      ['Aurora',  '#7c3aed', '#06b6d4', '#0f172a'],
-      ['Volt',    '#22c55e', '#22d3ee', '#0b1222'],
-      ['Sunset',  '#f97316', '#ef4444', '#0f172a'],
-      ['Royal',   '#3b82f6', '#8b5cf6', '#0b1020'],
-      ['Candy',   '#ec4899', '#a855f7', '#0f1120'],
-      ['Citrus',  '#f59e0b', '#34d399', '#0c1422'],
-      ['Steel',   '#64748b', '#94a3b8', '#0b1220'],
-      ['Firefly', '#10b981', '#7c3aed', '#0b1120'],
-      ['Aqua',    '#06b6d4', '#3b82f6', '#0a1320'],
-      ['Rose',    '#fb7185', '#f472b6', '#140f1a'],
-      ['Neon',    '#22d3ee', '#a78bfa', '#0b0f1e'],
-      ['Amber',   '#fbbf24', '#f59e0b', '#16100a'],
-    ];
+    const THEMES={aurora:{top:'#7c3aed',cta:'#06b6d4'},blue:{top:'#2563eb',cta:'#3b82f6'},green:{top:'#16a34a',cta:'#22c55e'},sunset:{top:'#fb923c',cta:'#ef4444'},steel:{top:'#64748b',cta:'#94a3b8'}};
 
-    // 10 layouts × 12 colorways = 120 templates
-    const TEMPLATES = [];
-    for (const layout of LAYOUTS){
-      for (const cw of COLORWAYS){
-        TEMPLATES.push({ id: `${layout.id}-${cw[0].toLowerCase()}`, layout: layout.id, layoutName: layout.name, colorName: cw[0], primary: cw[1], secondary: cw[2], dark: cw[3] });
-      }
+    function escapeHtml(str){if(!str)return'';return String(str).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;','\'':'&#39;'}[m]));}
+    function escapeAttr(str){return escapeHtml(str).replace(/\"/g,'%22');}
+
+    function buildHtml(){
+      const t=THEMES[themeSelect.value]||THEMES.aurora;
+      return `<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>${escapeHtml(headlineInput.value)}</title></head><body style=\"margin:0;padding:20px;background:${t.top};font-family:Arial,sans-serif;\"><table role=\"presentation\" width=\"100%\"><tr><td align=\"center\"><table role=\"presentation\" width=\"640\" style=\"max-width:100%;background:#fff;border-radius:10px\"><tr><td style=\"padding:28px 20px;text-align:center;background:${t.top};color:#fff\"><h1>${escapeHtml(headlineInput.value)}</h1><div>${escapeHtml(subheadInput.value)}</div></td></tr><tr><td style=\"padding:22px 20px;text-align:center\"><a href=\"${escapeAttr(ctaUrlInput.value)}\" style=\"display:inline-block;padding:12px 22px;border-radius:8px;background:${t.cta};color:#fff;text-decoration:none\">${escapeHtml(ctaTextInput.value)}</a><div style=\"margin-top:12px;color:#475569;line-height:1.6\">${escapeHtml(ctaParagraphInput.value)}</div></td></tr><tr><td style=\"padding:18px 20px;text-align:center;font-size:13px;color:#94a3b8\"><a href=\"${escapeAttr(unsubscribeInput.value)}\">Unsubscribe</a></td></tr></table></td></tr></table></body></html>`;
     }
 
-    // ===== UI Bootstrap =====
-    const grid = document.getElementById('templateGrid');
-    const filterLayout = document.getElementById('filterLayout');
-    const filterColor = document.getElementById('filterColor');
-    const countLayouts = document.getElementById('countLayouts');
-    const countColors = document.getElementById('countColors');
-    const countTotal = document.getElementById('countTotal');
-    const libCount = document.getElementById('libCount');
-    const currentTpl = document.getElementById('currentTpl');
+    function render(){previewArea.innerHTML=buildHtml();}
+    [headlineInput,subheadInput,ctaTextInput,ctaUrlInput,ctaParagraphInput,themeSelect,unsubscribeInput].forEach(el=>el.addEventListener('input',render));
+    render();
 
-    const logoText = document.getElementById('logoText');
-    const headline = document.getElementById('headline');
-    const subhead = document.getElementById('subhead');
-    const hero = document.getElementById('hero');
-    const body = document.getElementById('body');
-    const ctaText = document.getElementById('ctaText');
-    const ctaUrl = document.getElementById('ctaUrl');
-    const footer = document.getElementById('footer');
-    const preview = document.getElementById('preview');
-
-    const refreshBtn = document.getElementById('refresh');
-    const exportBtn = document.getElementById('export');
-
-    // Populate filters
-    for (const l of LAYOUTS){
-      const opt = document.createElement('option');
-      opt.value = l.id; opt.textContent = l.name; filterLayout.appendChild(opt);
-    }
-    const uniqueColors = COLORWAYS.map(c=>c[0]);
-    for (const c of uniqueColors){
-      const opt = document.createElement('option');
-      opt.value = c; opt.textContent = c; filterColor.appendChild(opt);
-    }
-
-    countLayouts.textContent = LAYOUTS.length;
-    countColors.textContent = COLORWAYS.length;
-    countTotal.textContent = TEMPLATES.length;
-    libCount.textContent = TEMPLATES.length;
-
-    function renderGrid(){
-      grid.innerHTML = '';
-      const L = filterLayout.value;
-      const C = filterColor.value;
-      const list = TEMPLATES.filter(t => (L==='all' || t.layout===L) && (C==='all' || t.colorName===C));
-      for (const t of list){
-        const card = document.createElement('button');
-        card.className = 'card';
-        card.setAttribute('data-id', t.id);
-        card.innerHTML = `
-          <div class="thumb" style="background:linear-gradient(135deg, ${t.primary}, ${t.secondary})">
-            <span>${t.layoutName} · ${t.colorName}</span>
-          </div>
-          <div class="meta"><span>${t.id}</span><span>Choose</span></div>
-        `;
-        card.addEventListener('click', ()=> selectTemplate(t));
-        grid.appendChild(card);
-      }
-    }
-
-    let selected = TEMPLATES[0];
-
-    function selectTemplate(t){
-      selected = t; currentTpl.textContent = `${t.layoutName} · ${t.colorName}`;
-      for (const el of document.querySelectorAll('.card')){
-        el.setAttribute('aria-selected', el.getAttribute('data-id')===t.id);
-      }
-      refreshPreview();
-    }
-
-    filterLayout.addEventListener('change', renderGrid);
-    filterColor.addEventListener('change', renderGrid);
-
-    // ===== Email generator (table-based + inline CSS) =====
-    function escapeHtml(s){
-      return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
-    }
-
-    function para(text){
-      if(!text) return '';
-      const lines = text.split(/\n\n+/).map(p=>`<p style="margin:0 0 14px 0;color:#334155;font-size:16px;line-height:1.6">${escapeHtml(p).replace(/\n/g,'<br>')}</p>`);
-      return lines.join('');
-    }
-
-    function button(label, url, primary){
-      return `<a href="${escapeHtml(url||'#')}" style="display:inline-block;background:${primary};color:#ffffff;text-decoration:none;padding:14px 20px;border-radius:10px;font-weight:700">${escapeHtml(label||'Learn more')}</a>`;
-    }
-
-    function headerHTML(t){
-      return `
-      <tr>
-        <td style="padding:24px 20px 0 20px;text-align:center">
-          <div style="display:inline-block;border-radius:10px;padding:10px 12px;background:${t.secondary};color:#ffffff;font-weight:800;letter-spacing:.02em">${escapeHtml(logoText.value||'Your Brand')}</div>
-        </td>
-      </tr>`;
-    }
-
-    function heroHTML(t){
-      if(!hero.value) return '';
-      return `
-      <tr>
-        <td style="padding:18px 20px 0 20px">
-          <img src="${escapeHtml(hero.value)}" width="640" style="width:100%;max-width:640px;border-radius:12px;display:block;border:0" alt=""/>
-        </td>
-      </tr>`;
-    }
-
-    function titleHTML(t){
-      return `
-      <tr>
-        <td style="padding:22px 24px 0 24px;text-align:center">
-          <h1 style="margin:0;color:#0f172a;font-size:26px;line-height:1.25">${escapeHtml(headline.value||'Your Headline')}</h1>
-          <div style="color:#475569;margin-top:8px;font-size:15px">${escapeHtml(subhead.value||'Subheadline here')}</div>
-        </td>
-      </tr>`;
-    }
-
-    function bodyHTML(t){
-      return `
-      <tr>
-        <td style="padding:18px 24px 0 24px">${para(body.value)}</td>
-      </tr>`;
-    }
-
-    function ctaHTML(t){
-      return `
-      <tr>
-        <td style="padding:18px 24px 26px 24px;text-align:center">${button(ctaText.value, ctaUrl.value, t.primary)}</td>
-      </tr>`;
-    }
-
-    function footerHTML(t){
-      return `
-      <tr>
-        <td style="padding:20px 24px 24px 24px;text-align:center;color:#64748b;font-size:12px">
-          ${escapeHtml(footer.value)}<br>
-          <a href="{{unsubscribe}}" style="color:${t.secondary};text-decoration:none">Unsubscribe</a>
-        </td>
-      </tr>`;
-    }
-
-    const LAYOUT_RENDERERS = {
-      hero: (t)=> headerHTML(t)+heroHTML(t)+titleHTML(t)+bodyHTML(t)+ctaHTML(t)+footerHTML(t),
-      digest: (t)=> headerHTML(t)+titleHTML(t)+bodyHTML(t)+ctaHTML(t)+footerHTML(t),
-      announce: (t)=> headerHTML(t)+titleHTML(t)+ctaHTML(t)+bodyHTML(t)+footerHTML(t),
-      spotlight: (t)=> headerHTML(t)+heroHTML(t)+titleHTML(t)+ctaHTML(t)+bodyHTML(t)+footerHTML(t),
-      magazine: (t)=> headerHTML(t)+titleHTML(t)+bodyHTML(t)+heroHTML(t)+ctaHTML(t)+footerHTML(t),
-      minimal: (t)=> headerHTML(t)+titleHTML(t)+bodyHTML(t)+footerHTML(t),
-      columns: (t)=> headerHTML(t)+titleHTML(t)+
-        `<tr><td style="padding:18px 24px 0 24px">
-          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse">
-            <tr>
-              <td width="50%" style="vertical-align:top;padding-right:8px">${para(body.value)}</td>
-              <td width="50%" style="vertical-align:top;padding-left:8px">${para(body.value)}</td>
-            </tr>
-          </table>
-        </td></tr>`+ctaHTML(t)+footerHTML(t),
-      event: (t)=> headerHTML(t)+titleHTML(t)+heroHTML(t)+bodyHTML(t)+ctaHTML(t)+footerHTML(t),
-      promo: (t)=> headerHTML(t)+heroHTML(t)+titleHTML(t)+ctaHTML(t)+footerHTML(t),
-      report: (t)=> headerHTML(t)+titleHTML(t)+bodyHTML(t)+ctaHTML(t)+footerHTML(t)
-    };
-
-    function emailHTML(t){
-      const gradient = `linear-gradient(135deg, ${t.primary}, ${t.secondary})`;
-      const shell = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>${escapeHtml(headline.value||'Newsletter')}</title>
-</head>
-<body style="margin:0;background:${t.dark};padding:20px">
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse">
-    <tr>
-      <td align="center">
-        <table role="presentation" width="640" cellspacing="0" cellpadding="0" style="width:640px;max-width:100%;border-collapse:collapse;background:#ffffff;border-radius:14px;overflow:hidden">
-          <tr><td style="height:6px;background:${t.primary}"></td></tr>
-          ${LAYOUT_RENDERERS[t.layout](t)}
-        </table>
-        <div style="height:32px"></div>
-        <table role="presentation" width="640" cellspacing="0" cellpadding="0" style="width:640px;max-width:100%;border-collapse:collapse">
-          <tr><td style="text-align:center;color:#cdd5e1;font-size:12px">Built with your Newsletter Maker · ${escapeHtml(selected.layoutName)} · ${escapeHtml(selected.colorName)}</td></tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>`;
-      return shell;
-    }
-
-    function refreshPreview(){
-      const doc = preview.contentDocument || preview.contentWindow.document;
-      doc.open();
-      doc.write(emailHTML(selected));
-      doc.close();
-    }
-
-    function exportHtml(){
-      const html = emailHTML(selected);
-      const file = new Blob([html], {type:'text/html'});
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(file);
-      a.download = `newsletter_${selected.id}.html`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
-    }
-
-    document.addEventListener('input', (e)=>{
-      if([logoText, headline, subhead, hero, body, ctaText, ctaUrl, footer].includes(e.target)){
-        refreshPreview();
-      }
+    document.getElementById('getLink').addEventListener('click',()=>{
+      const blob=new Blob([buildHtml()],{type:'text/html'});
+      const url=URL.createObjectURL(blob);
+      window.open(url,'_blank');
     });
-    refreshBtn.addEventListener('click', refreshPreview);
-    exportBtn.addEventListener('click', exportHtml);
 
-    renderGrid();
-    selectTemplate(selected);
+    document.getElementById('exportBtn').addEventListener('click',()=>{
+      const blob=new Blob([buildHtml()],{type:'text/html'});
+      const a=document.createElement('a');
+      a.href=URL.createObjectURL(blob);
+      a.download='newsletter.html';
+      a.click();
+    });
   </script>
 </body>
 </html>
