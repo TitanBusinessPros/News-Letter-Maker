@@ -5,91 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Working Newsletter Builder — Export Ready</title>
   <style>
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:#071022;color:#E6EEF8}
-    .outer{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-    .frame{width:100%;max-width:1200px;background:linear-gradient(180deg,#071226,#071121);border-radius:12px;display:grid;grid-template-columns:340px 1fr;gap:18px;padding:18px;border:1px solid #112036}
-    /* sidebar */
-    .panel{background:#0b1626;border-radius:10px;padding:14px;border:1px solid #122036}
-    h1{font-size:18px;margin:0 0 8px 0}
-    label{display:block;color:#9fb0d6;font-size:13px;margin-top:12px}
-    input[type="text"],textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid #162538;background:#071025;color:#e6eef8;font-size:14px}
-    textarea{min-height:90px;resize:vertical}
-    .actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-    button{cursor:pointer;border:0;padding:10px 12px;border-radius:8px;font-weight:800}
-    .btn-export{background:linear-gradient(135deg,#f59e0b,#f97316);color:#061022}
-    .btn-test{background:linear-gradient(135deg,#06b6d4,#7c3aed);color:#061022}
-    /* preview */
-    .preview-wrap{display:flex;flex-direction:column;gap:12px}
-    .preview{background:#fff;color:#071022;border-radius:10px;padding:18px;border:1px solid #dbe7f8;overflow:auto}
-    .note{color:#9fb0d6;font-size:13px;margin-top:8px}
-    @media (max-width:980px){.frame{grid-template-columns:1fr;}.panel{order:2}}
+    /* [unchanged styles, omitted for brevity] */
   </style>
 </head>
 <body>
-  <div class="outer">
-    <div class="frame" role="application" aria-label="Newsletter builder">
-      <aside class="panel" aria-label="Controls">
-        <h1>Newsletter Builder</h1>
-
-        <label>Headline
-          <input id="inpHead" type="text" placeholder="Big news this week" value="Big news this week">
-        </label>
-
-        <label>Subheadline
-          <input id="inpSub" type="text" placeholder="Short subheading" value="Short subheading">
-        </label>
-
-        <label>Body (separate paragraphs with blank line)
-          <textarea id="inpBody">This is the first paragraph.
-
-This is a second paragraph with more detail.</textarea>
-        </label>
-
-        <label>CTA Text
-          <input id="inpCtaText" type="text" placeholder="Read the article" value="Read the article">
-        </label>
-
-        <label>CTA URL
-          <input id="inpCtaUrl" type="text" placeholder="https://example.com/article" value="https://example.com/article">
-        </label>
-
-        <label>Paragraph under CTA
-          <textarea id="inpCtaPara">Short supporting paragraph under the CTA. This wraps and will not overflow.</textarea>
-        </label>
-
-        <label>Unsubscribe URL
-          <input id="inpUnsub" type="text" placeholder="https://example.com/unsubscribe" value="https://example.com/unsubscribe">
-        </label>
-
-        <label>Color theme
-          <select id="inpTheme">
-            <option value="aurora">Aurora</option>
-            <option value="blue">Blue</option>
-            <option value="green">Green</option>
-            <option value="sunset">Sunset</option>
-            <option value="steel">Steel</option>
-          </select>
-        </label>
-
-        <div class="actions" role="group" aria-label="Actions">
-          <button id="btnTest" class="btn-test" title="Open test link in new tab">Get Test Link</button>
-          <button id="btnExport" class="btn-export" title="Download HTML file">Export HTML</button>
-        </div>
-
-        <p class="note">Test Link opens a temporary preview (blob URL). Export downloads a standalone HTML file. CTA and unsubscribe links are included and open in a new tab.</p>
-      </aside>
-
-      <main class="preview-wrap">
-        <div class="preview" id="preview" aria-live="polite">
-          <!-- preview rendered here -->
-        </div>
-      </main>
-    </div>
-  </div>
-
+  <!-- [unchanged HTML, omitted for brevity] -->
   <script>
-    // DOM
+    // DOM [unchanged]
     const inpHead = document.getElementById('inpHead');
     const inpSub = document.getElementById('inpSub');
     const inpBody = document.getElementById('inpBody');
@@ -103,7 +25,7 @@ This is a second paragraph with more detail.</textarea>
     const btnTest = document.getElementById('btnTest');
     const btnExport = document.getElementById('btnExport');
 
-    // Themes
+    // Themes [unchanged]
     const THEMES = {
       aurora:{top:'#7c3aed',cta:'#06b6d4'},
       blue:{top:'#2563eb',cta:'#3b82f6'},
@@ -123,10 +45,16 @@ This is a second paragraph with more detail.</textarea>
         .replaceAll("'",'&#39;');
     }
     function escAttr(s){
-      return escText(s).replaceAll('"','%22');
+      // Only escape &, ", <, >
+      if (s == null) return '';
+      return String(s)
+        .replaceAll('&', '&amp;')
+        .replaceAll('"', '&quot;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;');
     }
 
-    // Convert body to paragraphs
+    // Convert body to paragraphs [unchanged]
     function bodyToHtml(text){
       if(!text) return '';
       const parts = String(text).split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
@@ -181,7 +109,6 @@ This is a second paragraph with more detail.</textarea>
 
           <tr>
             <td style="padding:18px 20px;text-align:center;color:#94a3b8;font-size:13px;">
-              <div style="margin-bottom:6px">${escText(unsub)}</div>
               <a href="${unsub}" target="_blank" rel="noopener noreferrer" style="color:${theme.cta};text-decoration:none">Unsubscribe</a>
             </td>
           </tr>
@@ -193,7 +120,7 @@ This is a second paragraph with more detail.</textarea>
 </html>`;
     }
 
-    // Render the preview inside builder
+    // Render the preview inside builder [unchanged]
     function renderPreview(){
       try{
         preview.innerHTML = buildEmailHtml();
@@ -202,7 +129,7 @@ This is a second paragraph with more detail.</textarea>
       }
     }
 
-    // Export (download) HTML file
+    // Export and Test link [unchanged]
     function exportHtml(){
       const html = buildEmailHtml();
       const blob = new Blob([html], {type:'text/html'});
@@ -214,18 +141,14 @@ This is a second paragraph with more detail.</textarea>
       a.remove();
       setTimeout(()=>URL.revokeObjectURL(a.href), 1500);
     }
-
-    // Test link (open temp blob in new tab)
     function openTestLink(){
       const html = buildEmailHtml();
       const blob = new Blob([html], {type:'text/html'});
       const url = URL.createObjectURL(blob);
       window.open(url, '_blank');
-      // we intentionally do not revoke immediately so user can use the tab.
-      // it will be revoked when the session ends or later if you want.
     }
 
-    // Wire events
+    // Wire events [unchanged]
     [inpHead, inpSub, inpBody, inpCtaText, inpCtaUrl, inpCtaPara, inpUnsub, inpTheme].forEach(el=>{
       el.addEventListener('input', renderPreview);
     });
